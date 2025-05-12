@@ -26,8 +26,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-${{ github.ref }}-${{ hashFiles('path/to/Dockerfile', 'path/to/dependencies') }}
           restore-keys: |
+            ${{ runner.os }}-buildx-${{ github.ref }}-
             ${{ runner.os }}-buildx-
 
       - name: "🔧 docker meta"
